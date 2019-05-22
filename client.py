@@ -51,12 +51,18 @@ class Player():
         self.circle = (self.x, self.y)
 
 def createCells(win):
-    howManyCells = range(10)
-    #for cell in howManyCells
+
     allCellsList.append(Cell(500, 100, 10, (0, 0, 255), 1))
     allCellsList.append(Cell(700, 200, 10, (0, 0, 255), 2))
+    allCellsList.append(Cell(700, 500, 10, (0, 0, 255), 3))
+    allCellsList.append(Cell(500, 200, 10, (0, 0, 255), 4))
+    allCellsList.append(Cell(200, 200, 10, (0, 0, 255), 5))
+
     pygame.draw.circle(win, (0,0,255), allCellsList[0].position, allCellsList[0].r)
     pygame.draw.circle(win, (0,0,255), allCellsList[1].position, allCellsList[1].r)
+    pygame.draw.circle(win, (0,0,255), allCellsList[2].position, allCellsList[2].r)
+    pygame.draw.circle(win, (0,0,255), allCellsList[3].position, allCellsList[3].r)
+    pygame.draw.circle(win, (0,0,255), allCellsList[4].position, allCellsList[4].r)
     pygame.display.flip()
 
 
@@ -82,7 +88,6 @@ def main():
     p = Player(startPos[0],startPos[1],(0, 255, 0), 100)
     p2 = Player(0, 0,(255, 0, 0), 100,)
     clock = pygame.time.Clock()
-
     while run:
         clock.tick(120)
         p2Pos = read_pos(myNetwork.send(make_pos((p.x, p.y))))
@@ -90,10 +95,11 @@ def main():
         p2.y = p2Pos[1]
         p2.update()
         createCells(window)
-        #if allCellsList[0].x == 500:
-        #   print("dupa")
-        if  math.fabs(math.sqrt(math.pow((allCellsList[0].x - p.x), 2) + math.pow((allCellsList[0].y - p.y), 2))) < math.fabs(p.radius - allCellsList[0].r):
-            print("mamy zloto")
+
+        for index in range(5):
+            print(index)
+            if  math.fabs(math.sqrt(math.pow((allCellsList[index].x - p.x), 2) + math.pow((allCellsList[index].y - p.y), 2))) < math.fabs(p.radius - allCellsList[index].r):
+                print("jest zloto")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
