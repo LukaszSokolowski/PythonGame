@@ -10,7 +10,11 @@ window = pygame.display.set_mode((windowWidth, windowHeight))
 clientNumber = 0
 
 allCellsList = []
-
+allCellsList.append(Cell(500, 100, 10, (0, 0, 255), 1))
+allCellsList.append(Cell(700, 200, 10, (0, 0, 255), 2))
+allCellsList.append(Cell(700, 500, 10, (0, 0, 255), 3))
+allCellsList.append(Cell(500, 200, 10, (0, 0, 255), 4))
+allCellsList.append(Cell(200, 200, 10, (0, 0, 255), 5))
 
 class Player():
     def __init__(self, x, y, color,radius):
@@ -23,12 +27,7 @@ class Player():
 
     def draw(self, win):
         pygame.draw.circle(win, self.color, self.circle, self.radius)
-       # pygame.draw.circle(window, (0, 0, 255), (500, 200), 20)
-       # pygame.draw.circle(window, (0, 0, 255), (370, 100), 20)
-       # pygame.draw.circle(window, (0, 0, 255), (640, 300), 20)
-       # pygame.draw.circle(window, (0, 0, 255), (500, 400), 20)
-       # pygame.draw.circle(window, (0, 0, 255), (700, 450), 20)
-       # pygame.draw.circle(window, (0, 0, 255), (500, 700), 20)
+        createCells(window)
         pygame.display.flip()
     def move(self):
         keys = pygame.key.get_pressed()
@@ -52,17 +51,14 @@ class Player():
 
 def createCells(win):
 
-    allCellsList.append(Cell(500, 100, 10, (0, 0, 255), 1))
-    allCellsList.append(Cell(700, 200, 10, (0, 0, 255), 2))
-    allCellsList.append(Cell(700, 500, 10, (0, 0, 255), 3))
-    allCellsList.append(Cell(500, 200, 10, (0, 0, 255), 4))
-    allCellsList.append(Cell(200, 200, 10, (0, 0, 255), 5))
+    for i in allCellsList:
 
-    pygame.draw.circle(win, (0,0,255), allCellsList[0].position, allCellsList[0].r)
-    pygame.draw.circle(win, (0,0,255), allCellsList[1].position, allCellsList[1].r)
-    pygame.draw.circle(win, (0,0,255), allCellsList[2].position, allCellsList[2].r)
-    pygame.draw.circle(win, (0,0,255), allCellsList[3].position, allCellsList[3].r)
-    pygame.draw.circle(win, (0,0,255), allCellsList[4].position, allCellsList[4].r)
+        pygame.draw.circle(win, (0,0,255), i.position, i.r)
+
+    #pygame.draw.circle(win, (0,0,255), allCellsList[1].position, allCellsList[1].r)
+    #pygame.draw.circle(win, (0,0,255), allCellsList[2].position, allCellsList[2].r)
+    #pygame.draw.circle(win, (0,0,255), allCellsList[3].position, allCellsList[3].r)
+    #pygame.draw.circle(win, (0,0,255), allCellsList[4].position, allCellsList[4].r)
     pygame.display.flip()
 
 
@@ -96,10 +92,11 @@ def main():
         p2.update()
         createCells(window)
 
-        for index in range(5):
+        for index in allCellsList:
             print(index)
-            if  math.fabs(math.sqrt(math.pow((allCellsList[index].x - p.x), 2) + math.pow((allCellsList[index].y - p.y), 2))) < math.fabs(p.radius - allCellsList[index].r):
+            if  math.fabs(math.sqrt(math.pow((index.x - p.x), 2) + math.pow((index.y - p.y), 2))) < math.fabs(p.radius - index.r):
                 print("jest zloto")
+                allCellsList.remove(index)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
