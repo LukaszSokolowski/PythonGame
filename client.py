@@ -22,12 +22,12 @@ class Player():
 
     def draw(self, win):
         pygame.draw.circle(win, self.color, self.circle, self.radius)
-        pygame.draw.circle(window, (0, 0, 255), (500, 200), 20)
-        pygame.draw.circle(window, (0, 0, 255), (370, 100), 20)
-        pygame.draw.circle(window, (0, 0, 255), (640, 300), 20)
-        pygame.draw.circle(window, (0, 0, 255), (500, 400), 20)
-        pygame.draw.circle(window, (0, 0, 255), (700, 450), 20)
-        pygame.draw.circle(window, (0, 0, 255), (500, 700), 20)
+       # pygame.draw.circle(window, (0, 0, 255), (500, 200), 20)
+       # pygame.draw.circle(window, (0, 0, 255), (370, 100), 20)
+      #  pygame.draw.circle(window, (0, 0, 255), (640, 300), 20)
+       # pygame.draw.circle(window, (0, 0, 255), (500, 400), 20)
+       # pygame.draw.circle(window, (0, 0, 255), (700, 450), 20)
+       # pygame.draw.circle(window, (0, 0, 255), (500, 700), 20)
         pygame.display.flip()
     def move(self):
         keys = pygame.key.get_pressed()
@@ -49,11 +49,17 @@ class Player():
     def update(self):
         self.circle = (self.x, self.y)
 
-def createCells():
+def createCells(win):
     howManyCells = range(10)
     thislist = []
     #for cell in howManyCells
-    thislist.append(Cell(100,100))
+    thislist.append(Cell(500,100,10,(0,0,255),1))
+    thislist.append(Cell(700,200,10,(0,0,255),2))
+    pygame.draw.circle(win, thislist[0].color, thislist[0].position, thislist[0].r)
+    pygame.draw.circle(win, thislist[1].color, thislist[1].position, thislist[1].r)
+
+    pygame.display.flip()
+
 
 def read_pos(str):
     str = str.split(",")
@@ -84,6 +90,7 @@ def main():
         p2.x = p2Pos[0]
         p2.y = p2Pos[1]
         p2.update()
+        createCells(window)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
