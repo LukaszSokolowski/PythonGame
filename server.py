@@ -1,6 +1,5 @@
 import socket
 from _thread import *
-from circle import Cell
 server = "192.168.101.11"
 port = 5555
 

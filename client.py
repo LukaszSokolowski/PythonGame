@@ -10,18 +10,12 @@ windowHeight = 750
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clientNumber = 0
 
-
-
 allCellsList = []
 allCellsList.append(Cell(500, 100, 10, (0, 0, 255), 1))
 allCellsList.append(Cell(700, 200, 10, (0, 0, 255), 2))
 allCellsList.append(Cell(700, 500, 10, (0, 0, 255), 3))
 allCellsList.append(Cell(500, 200, 10, (0, 0, 255), 4))
 allCellsList.append(Cell(200, 200, 10, (0, 0, 255), 5))
-
-#score = 0
-#enemyScore = 0
-
 class Player():
     def __init__(self, x, y, color,radius):
         self.x = x
@@ -86,9 +80,8 @@ def main():
     p = Player(startPos[0],startPos[1],(0, 255, 0), 25)
     p2 = Player(0, 0,(255, 0, 0), 25)
     clock = pygame.time.Clock()
-    #global score
+
     score = 0
-    #global enemyScore
     enemyScore = 0
 
     while run:
