@@ -16,6 +16,9 @@ allCellsList.append(Cell(700, 500, 10, (0, 0, 255), 3))
 allCellsList.append(Cell(500, 200, 10, (0, 0, 255), 4))
 allCellsList.append(Cell(200, 200, 10, (0, 0, 255), 5))
 
+#score = 0
+#enemyScore = 0
+
 class Player():
     def __init__(self, x, y, color,radius):
         self.x = x
@@ -55,10 +58,6 @@ def createCells(win):
 
         pygame.draw.circle(win, (0,0,255), i.position, i.r)
 
-    #pygame.draw.circle(win, (0,0,255), allCellsList[1].position, allCellsList[1].r)
-    #pygame.draw.circle(win, (0,0,255), allCellsList[2].position, allCellsList[2].r)
-    #pygame.draw.circle(win, (0,0,255), allCellsList[3].position, allCellsList[3].r)
-    #pygame.draw.circle(win, (0,0,255), allCellsList[4].position, allCellsList[4].r)
     pygame.display.flip()
 
 
@@ -81,9 +80,13 @@ def main():
     run = True
     myNetwork = Network()
     startPos = read_pos(myNetwork.getPos())
-    p = Player(startPos[0],startPos[1],(0, 255, 0), 100)
-    p2 = Player(0, 0,(255, 0, 0), 100,)
+    p = Player(startPos[0],startPos[1],(0, 255, 0), 25)
+    p2 = Player(0, 0,(255, 0, 0), 25)
     clock = pygame.time.Clock()
+    #global score
+    score = 0
+    #global enemyScore
+    enemyScore = 0
     while run:
         clock.tick(120)
         p2Pos = read_pos(myNetwork.send(make_pos((p.x, p.y))))
@@ -96,7 +99,17 @@ def main():
             print(index)
             if  math.fabs(math.sqrt(math.pow((index.x - p.x), 2) + math.pow((index.y - p.y), 2))) < math.fabs(p.radius - index.r):
                 print("jest zloto")
+
+                score = score + 10
                 allCellsList.remove(index)
+                print("Player1 %s", score)
+
+            if  math.fabs(math.sqrt(math.pow((index.x - p2.x), 2) + math.pow((index.y - p2.y), 2))) < math.fabs(p2.radius - index.r):
+                print("jest zloto")
+                enemyScore = enemyScore + 10
+                allCellsList.remove(index)
+                print("Player2 %s", enemyScore)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
