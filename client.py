@@ -3,11 +3,14 @@ import random
 from network import Network
 from circle import Cell
 import math
+pygame.font.init()
 
 windowWidth = 750
 windowHeight = 750
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clientNumber = 0
+
+
 
 allCellsList = []
 allCellsList.append(Cell(500, 100, 10, (0, 0, 255), 1))
@@ -87,6 +90,7 @@ def main():
     score = 0
     #global enemyScore
     enemyScore = 0
+
     while run:
         clock.tick(120)
         p2Pos = read_pos(myNetwork.send(make_pos((p.x, p.y))))
@@ -94,6 +98,15 @@ def main():
         p2.y = p2Pos[1]
         p2.update()
         createCells(window)
+
+        font = pygame.font.SysFont("comicsans", 80)
+        text = font.render(str(score), 1, (255, 0, 0), True)
+        text2 = font.render(str(enemyScore), 1, (255, 0, 0), True)
+
+        window.blit(text, (300,300))
+        window.blit(text2, (100,100))
+
+        pygame.display.flip()
 
         for index in allCellsList:
             print(index)
