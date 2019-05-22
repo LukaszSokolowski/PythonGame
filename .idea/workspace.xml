@@ -24,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="94" column="150" selection-start-line="94" selection-start-column="150" selection-end-line="94" selection-end-column="150" />
+            <state relative-caret-position="396">
+              <caret line="94" column="155" selection-start-line="94" selection-start-column="155" selection-end-line="94" selection-end-column="155" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -110,7 +110,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.client">
+  <component name="RunManager" selected="Python.server">
     <configuration name="client" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true">
       <module name="PythonGame" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -176,16 +176,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558551796334</updated>
-      <workItem from="1558551797999" duration="5750000" />
+      <workItem from="1558551797999" duration="6553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5750000" />
+    <option name="totallyTimeSpent" value="6553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
@@ -214,8 +213,8 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PythonGame$client.coverage" NAME="client Coverage Results" MODIFIED="1558557623723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PythonGame$server.coverage" NAME="server Coverage Results" MODIFIED="1558557619369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PythonGame$client.coverage" NAME="client Coverage Results" MODIFIED="1558558905610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PythonGame$server.coverage" NAME="server Coverage Results" MODIFIED="1558558903263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/network.py">
@@ -244,8 +243,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="94" column="150" selection-start-line="94" selection-start-column="150" selection-end-line="94" selection-end-column="150" />
+        <state relative-caret-position="396">
+          <caret line="94" column="155" selection-start-line="94" selection-start-column="155" selection-end-line="94" selection-end-column="155" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

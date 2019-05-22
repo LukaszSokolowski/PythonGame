@@ -92,7 +92,7 @@ def main():
         createCells(window)
         #if allCellsList[0].x == 500:
         #   print("dupa")
-        if math.fabs(p.radius - allCellsList[0].r) < math.fabs(math.sqrt(math.pow((allCellsList[0].x - p.x), 2) + math.pow((allCellsList[0].y - p.y), 2))) < p.radius+allCellsList[0].r:
+        if  math.fabs(math.sqrt(math.pow((allCellsList[0].x - p.x), 2) + math.pow((allCellsList[0].y - p.y), 2))) < math.fabs(p.radius - allCellsList[0].r):
             print("mamy zloto")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
