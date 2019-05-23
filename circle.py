@@ -8,5 +8,9 @@ class Cell:
         self.id = id
         self.position = (x,y)
 
-
+class CellPosition:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+        self.position = (x,y)
 
