@@ -2,6 +2,7 @@ import pygame
 import random
 from network import Network
 from circle import Cell
+from circle import CellPosition
 import math
 pygame.font.init()
 
@@ -9,12 +10,33 @@ windowWidth = 750
 windowHeight = 750
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clientNumber = 0
+positionCell = []
+
+font = pygame.font.SysFont("comicsans", 80)
+text3 = font.render(" ", 1, (255, 0, 0), True)
+
+positionCell.append(CellPosition(587,154))
+positionCell.append(CellPosition(618,241))
+positionCell.append(CellPosition(157,710))
+positionCell.append(CellPosition(234,409))
+positionCell.append(CellPosition(442,221))
+positionCell.append(CellPosition(842,523))
+positionCell.append(CellPosition(356,180))
+positionCell.append(CellPosition(300,251))
+positionCell.append(CellPosition(223,600))
+positionCell.append(CellPosition(422,555))
+positionCell.append(CellPosition(19,335))
+positionCell.append(CellPosition(50,495))
+positionCell.append(CellPosition(37,190))
+positionCell.append(CellPosition(699,694))
+positionCell.append(CellPosition(313,165))
+positionCell.append(CellPosition(610,416))
+positionCell.append(CellPosition(281,120))
 
 allCellsList = []
 
-for i in range(61):
-    allCellsList.append(Cell(random.randrange(700), random.randrange(70,700), 10, (0, 0, 255), i))
-
+for i in range(len(positionCell)):
+    allCellsList.append(Cell(positionCell[i].x, positionCell[i].y, 10, (0, 0, 255), 1))
 
 class Player():
     def __init__(self, x, y, color,radius):
@@ -29,6 +51,7 @@ class Player():
         pygame.draw.circle(win, self.color, self.circle, self.radius)
         createCells(window)
         pygame.draw.rect(window, (0, 0, 255), (0, 0, 750, 50))
+        window.blit(text3, (350, 350))
         pygame.display.flip()
     def move(self):
         keys = pygame.key.get_pressed()
@@ -74,6 +97,9 @@ def redrawWindow(win,player, player2):
     player2.draw(win)
     pygame.display.update()
 
+def winner():
+    print("Wygrał")
+
 def main():
     run = True
     myNetwork = Network()
@@ -81,7 +107,7 @@ def main():
     p = Player(startPos[0],startPos[1],(0, 255, 0), 25)
     p2 = Player(0, 0,(255, 0, 0), 25)
     clock = pygame.time.Clock()
-
+    wyjscieZPetli = True
     score = 0
     enemyScore = 0
 
@@ -96,31 +122,48 @@ def main():
         font = pygame.font.SysFont("comicsans", 80)
         text = font.render(str(score), 1, (255, 0, 0), True)
         text2 = font.render(str(enemyScore), 1, (255, 0, 0), True)
-        colon = font.render(":", 1, (255, 0, 0), True)
 
-        window.blit(text, (280,0))
-        window.blit(text2, (400,0))
-        window.blit(colon, (345, 0))
+        window.blit(text, (5,0))
+        window.blit(text2, (660,0))
 
         pygame.display.flip()
 
         for index in allCellsList:
             print(index)
             if  math.fabs(math.sqrt(math.pow((index.x - p.x), 2) + math.pow((index.y - p.y), 2))) < math.fabs(p.radius - index.r):
-                print("jest zloto")
-
                 score = score + 10
-                p.radius = p.radius + 10
-
+                p.radius = p.radius + 1
                 allCellsList.remove(index)
-                print("Player1 %s", score)
 
             if  math.fabs(math.sqrt(math.pow((index.x - p2.x), 2) + math.pow((index.y - p2.y), 2))) < math.fabs(p2.radius - index.r):
-                print("jest zloto")
                 enemyScore = enemyScore + 10
-                p2.radius = p2.radius + 10
+                p2.radius = p2.radius + 1
                 allCellsList.remove(index)
-                print("Player2 %s", enemyScore)
+
+            if math.fabs(math.sqrt(math.pow((p.x - p2.x), 2) + math.pow((p.y - p2.y), 2))) < math.fabs(p2.radius - p.radius):
+                if score > enemyScore:
+                    text3 = font.render("Wygrałeś", 1, (255, 0, 0), True)
+                    window.blit(text3,(350,350))
+                    pygame.display.flip()
+                if score < enemyScore:
+                    text3 = font.render("Przegrałeś", 1, (255, 0, 0), True)
+                    window.blit(text3, (350, 350))
+                    pygame.display.flip()
+                if wyjscieZPetli:
+                    if score > enemyScore:
+                        p.vel = 0
+                        p2.color = p.color
+                        p.radius = p.radius + p2.radius
+                        wyjscieZPetli = False
+                        text = font.render("WIN", 1, (255, 0, 0), True)
+                        window.blit(text, (5, 0))
+                        pygame.display.flip()
+
+                    if score < enemyScore:
+                        p2.vel = 0
+                        p.color = p2.color
+                        p2.radius = p.radius + p2.radius
+                        wyjscieZPetli = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -129,5 +172,4 @@ def main():
 
         p.move()
         redrawWindow(window, p, p2)
-
 main()
