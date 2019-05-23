@@ -110,12 +110,15 @@ def main():
                 print("jest zloto")
 
                 score = score + 10
+                p.radius = p.radius + 10
+
                 allCellsList.remove(index)
                 print("Player1 %s", score)
 
             if  math.fabs(math.sqrt(math.pow((index.x - p2.x), 2) + math.pow((index.y - p2.y), 2))) < math.fabs(p2.radius - index.r):
                 print("jest zloto")
                 enemyScore = enemyScore + 10
+                p2.radius = p2.radius + 10
                 allCellsList.remove(index)
                 print("Player2 %s", enemyScore)
 
