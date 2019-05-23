@@ -1,6 +1,6 @@
 import socket
 from _thread import *
-server = "192.168.101.11"
+server = "192.168.101.17"
 port = 5555
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

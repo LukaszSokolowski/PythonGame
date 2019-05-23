@@ -11,11 +11,11 @@ window = pygame.display.set_mode((windowWidth, windowHeight))
 clientNumber = 0
 
 allCellsList = []
-allCellsList.append(Cell(500, 100, 10, (0, 0, 255), 1))
-allCellsList.append(Cell(700, 200, 10, (0, 0, 255), 2))
-allCellsList.append(Cell(700, 500, 10, (0, 0, 255), 3))
-allCellsList.append(Cell(500, 200, 10, (0, 0, 255), 4))
-allCellsList.append(Cell(200, 200, 10, (0, 0, 255), 5))
+
+for i in range(61):
+    allCellsList.append(Cell(random.randrange(700), random.randrange(70,700), 10, (0, 0, 255), i))
+
+
 class Player():
     def __init__(self, x, y, color,radius):
         self.x = x
@@ -28,6 +28,7 @@ class Player():
     def draw(self, win):
         pygame.draw.circle(win, self.color, self.circle, self.radius)
         createCells(window)
+        pygame.draw.rect(window, (0, 0, 255), (0, 0, 750, 50))
         pygame.display.flip()
     def move(self):
         keys = pygame.key.get_pressed()
@@ -95,9 +96,11 @@ def main():
         font = pygame.font.SysFont("comicsans", 80)
         text = font.render(str(score), 1, (255, 0, 0), True)
         text2 = font.render(str(enemyScore), 1, (255, 0, 0), True)
+        colon = font.render(":", 1, (255, 0, 0), True)
 
-        window.blit(text, (300,300))
-        window.blit(text2, (100,100))
+        window.blit(text, (280,0))
+        window.blit(text2, (400,0))
+        window.blit(colon, (345, 0))
 
         pygame.display.flip()
 
